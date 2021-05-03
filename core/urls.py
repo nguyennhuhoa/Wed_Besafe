@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import HomeView,SanphamView,Index
+from .views import HomeView,SanphamView,Index,HomeVieww
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views as core_view
@@ -13,16 +13,16 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('giohang/',core_view.giohangview , name = 'giohang'),
     path('',HomeView.as_view(), name = 'Trangchu'),
+    path('home/',HomeVieww.as_view(), name = 'trangchu'),
     path('login/', core_view.SiteLoginView.as_view(), name = 'login'),
-    path('register/', core_view.register),
+    path('register/', core_view.register, name = 'register'),
     path('banchay/', core_view.banchayview, name = 'banchay'),
     path('diemcao/', core_view.diemcaoview, name = 'diemcao'),
     path('giamdan/', core_view.giamdanview, name = 'giamdan'),
     path('tangdan/', core_view.tangdanview, name = 'tangdan'),
-    #path('login/', profiles_views.SiteLoginView.as_view(),name = 'login'),
-    #path('register/', profiles_views.SiteRegisterView.as_view(),name = 'register'),
-    path('profile/',HomeView.as_view(),name = 'profile'),
-    path('cart/add/<int:id>/', views.cart_add, name='cart_add'),
+    path('user/',core_view.userview, name = 'user')
+    path('profile/',HomeVieww.as_view(),name = 'profile'),
+    path('cart/add/<int:id>/', core_view.cart_add, name='cart_add'),
     #path('cart/item_clear/<int:id>/', core_view.item_clear, name='item_clear'),
     #path('cart/item_increment/<int:id>/',core_view.item_increment, name='item_increment'),
     #path('cart/item_decrement/<int:id>/',core_view.item_decrement, name='item_decrement'),

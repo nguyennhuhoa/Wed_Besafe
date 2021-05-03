@@ -24,8 +24,14 @@ from user_auth.forms import RegisterForm
 class HomeView(View):
     def get(self, request):
         s = Don_dat_hang.objects.all()
-    
         return render(request,'trangChu.html')
+
+
+class HomeVieww(View):
+    def get(self, request):
+        s = Don_dat_hang.objects.all()
+        return render(request,'trangChuafterlogin.html')
+
 class SanphamView(View):    
     def get(self,request):
         #Tìm spp theo thanh search trên wed
@@ -72,18 +78,21 @@ def register(request):
     registerForm = RegisterForm() 
     return render(request, 'register.html', {'form':registerForm})
 
-@login_required(login_url="/users/login")
+@login_required
 def cart_add(request, id):
     cart = gio_hang(request)
     product = San_pham.objects.get(id=id)
-    kh = Khach_hang.object.get(user = request.user)
-    cart.add(khach_hang = kh , san_pham = product , so_luong=1)
+    kh = Khach_hang.objects.get(user = request.user)
+    cart = gio_hang(khach_hang = kh , san_pham = product , so_luong=1)
+    cart.save()
     return redirect("sanpham")
 
 @login_required
 def giohangview(request):
     return render(request, 'giohang.html')
 
+def userview(request):
+    return render(request, 'user.html')
    
 #san phẩm cụ thể
 class Index(View):

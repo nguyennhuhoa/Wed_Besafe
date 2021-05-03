@@ -203,7 +203,12 @@
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>Tiếp tục mua sắm</a></h2>
                             
-                   
+                <form> sản phẩm trong giỏ hàng
+                    {% for value in request.session.cart.items %}
+                {{value.san_pham.ten}} {{value.san_pham.anh}} Total {{ value.price}}
+
+                {% endfor %}
+                 </form>  
                 <!-- Sidebar-->
                 <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
                     <h2 class="h6 px-4 py-3 bg-secondary text-center">Tổng tiền</h2>
